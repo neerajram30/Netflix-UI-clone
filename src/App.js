@@ -8,16 +8,25 @@ import {
 
 
 import './App.css'
-import HomeScreen from './HomeScreen'
+import FrontPage from './Pages/FrontPage';
+import NavBar from './Components/NavBar/NavBar';
+import HomeScreen from './Components/HomeScreen/HomeScreen'
 function App() {
   return (
 <div className="App">
   <Router>
-        <Switch>
-          <Route path="/">
+        
+          <Route exact path="/">
           <HomeScreen/>
           </Route>
-        </Switch>
+        
+        
+          <Route path='/home'>
+  
+            <FrontPage/>
+          
+          </Route>
+        
     </Router>
 </div>
   );

@@ -1,9 +1,9 @@
 import React from 'react'
 import './HomeScreen.css'
-import NavBar from './NavBar'
-import Banner from './Banner'
-import RowPost from './RowPost'
-import {orginals,action, trending, toprated} from './urls'
+import NavBar from '../NavBar/NavBar'
+import Banner from '../Banner/Banner'
+import RowPost from '../RowPosts/RowPost'
+import {orginals,action, trending, toprated} from '../../urls'
 
 function HomeScreen() {
     return (

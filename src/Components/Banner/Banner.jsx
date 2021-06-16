@@ -1,9 +1,9 @@
 import React from 'react'
 import './Banner.css'
 import {useState,useEffect} from 'react'
-import axios from './axios'
-import {API_KEY} from './constants'
-import {imgUrl} from './constants'
+import axios from '../../axios'
+import {API_KEY} from '../../constants'
+import {imgUrl} from '../../constants'
 function Banner() {
     const [movie,setMovie] = useState([])
     

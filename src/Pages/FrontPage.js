@@ -1,12 +1,10 @@
 import React from 'react'
-import FrontPage from '../Components/FrontPage/FrontPage'
-import NavBar from '../Components/NavBar/NavBar';
 
+import FrontHeader from '../Components/FrontHeader/FrontHeader';
 function Page() {
     return(
     <div>
-        <NavBar/>
-        <FrontPage/>
+        <FrontHeader/>
     </div>
     ) 
 

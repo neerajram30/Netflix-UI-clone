@@ -3,7 +3,7 @@ import "./FrontPage.css";
 
 function Item({ children, ...restProps }) {
   return (
-    <div className="item" {...restProps}>
+    <div className="items" {...restProps}>
       {children}
     </div>
   );

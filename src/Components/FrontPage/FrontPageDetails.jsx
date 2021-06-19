@@ -1,15 +1,15 @@
 import React from 'react'
 
-import image from '../../images/home-bg.jpg'
 import Wrapper from '../../assets/FrontScreen/wrapper'
 import Item from '../../assets/FrontScreen/items'
 import TextWrapper from '../../assets/FrontScreen/textwrapper'
 import Title from '../../assets/FrontScreen/title'
 import SubTitle from '../../assets/FrontScreen/subtitle'
 import ImageWrapper from '../../assets/FrontScreen/image-wrapper'
-import Image from '../../assets/FrontScreen/image'
+import tvImg from '../../assets/images/home-tv.jpg'
 
-function FrontPage() {
+
+function FrontPageDetails() {
     return(
         <Wrapper>
         <Item>
@@ -18,11 +18,11 @@ function FrontPage() {
                 <SubTitle>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</SubTitle>
             </TextWrapper>
         <ImageWrapper>
-            <Image src={image}></Image>
+            <img src={tvImg} alt="tv" />
         </ImageWrapper>
         </Item>
         </Wrapper>
         )
 
 }
-export default FrontPage;
+export default FrontPageDetails;

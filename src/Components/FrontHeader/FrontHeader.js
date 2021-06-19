@@ -6,12 +6,10 @@ import SigninButton from '../../assets/FrontHeader/BtnSignin'
 import FeatureWrapper from '../../assets/FrontHeader/FeatureWrapper'
 import FeatureTitle from '../../assets/FrontHeader/FeatureTitle'
 import Warning from '../../assets/FrontHeader/Warning'
-
+import FrontForm from '../FrontForm/FrontForm'
 function FrontHeader({children}) {
     return (
         <HeaderWrapper className="header-wrapper-home">
-        
-
         <NavBar className="navbar-home">
           <Logo />
           <SigninButton>Sign In</SigninButton>
@@ -23,7 +21,9 @@ function FrontHeader({children}) {
           <Warning>
             This is NOT official Netflix
           </Warning>
+          <FrontForm/>
         </FeatureWrapper>
+        
         {children}
       </HeaderWrapper>
     )

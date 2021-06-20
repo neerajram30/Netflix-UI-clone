@@ -6,21 +6,27 @@ import TextWrapper from '../../assets/FrontScreen/textwrapper'
 import Title from '../../assets/FrontScreen/title'
 import SubTitle from '../../assets/FrontScreen/subtitle'
 import ImageWrapper from '../../assets/FrontScreen/image-wrapper'
-import tvImg from '../../assets/images/home-tv.jpg'
 
+import FrontData from '../../Data/FrontData.json'
+import Seperator from '../Seperator/Seperator'
 
 function FrontPageDetails() {
     return(
         <Wrapper>
-        <Item>
+            {FrontData.map((item)=>(
+            <>
+        <Item key={item.id}>
             <TextWrapper>
-                <Title>Enjoy on your TV.</Title>
-                <SubTitle>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</SubTitle>
+                <Title>{item.title}</Title>
+                <SubTitle>{item.subTitle}</SubTitle>
             </TextWrapper>
         <ImageWrapper>
-            <img src={tvImg} alt="tv" />
+            <img src={item.image} alt={item.alt} />
         </ImageWrapper>
         </Item>
+        <Seperator/>
+        </>
+            ))}
         </Wrapper>
         )
 

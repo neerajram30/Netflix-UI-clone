@@ -1,11 +1,7 @@
 body{
   background-color: black;
 }
-.wrapper{
-  width: auto;
-  height: 50%;
-  display: flex;
-}
+
 .items {
     padding: 70px 5%;
     max-width: 1100px;

@@ -3,7 +3,7 @@ import "./FrontPage.css";
 
 function ImageWrapper({ children, ...restProps }) {
   return (
-    <div className="imagewrapper" {...restProps}>
+    <div className="imagewrapper"  {...restProps}>
       {children}
     </div>
   );

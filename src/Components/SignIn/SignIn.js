@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useContext} from 'react'
 import HeaderWrapper from '../../assets/FrontHeader/HeaderWrapper'
 import Logo from '../../assets/FrontHeader/Logo'
 import FrontNav from '../../assets/FrontHeader/FrontNav'
@@ -12,7 +12,27 @@ import FormText from '../../assets/UserForm/FormText'
 import FormLink from '../../assets/UserForm/FormLink'
 import FormCaptcha from '../../assets/UserForm/FormCaptche'
 import Footer from '../Footer/Footer'
+import {FirebaseContext} from '../../Context/Context'
+import {useHistory} from 'react-router-dom'
 function SignIn() {
+    const [email,setEmail] =useState('');
+    const [password,setPassword] =useState('');
+    const [error,setError] =useState('');
+    const {firebase} =  useContext(FirebaseContext);
+    const history =useHistory()
+    const isInvalid =password === "" || email === ""
+
+    const handleSubmit =(event)=>{
+        event.preventDefault();
+        firebase.auth().signInWithEmailAndPassword(email,password).then(()=>{
+            history.push('/home')
+        }).catch((error)=>{
+            setError(error.message);
+
+        })
+
+    }
+
     return (
         <>
         <HeaderWrapper className="header-wrapper-home">
@@ -20,19 +40,24 @@ function SignIn() {
             <Logo/>
             </FrontNav>
         <FormWrapper className="sign-form-wrapper">
-            <FormBase>
+            <FormBase onSubmit={handleSubmit}>
                 <FormTitle>Sign In</FormTitle>
-                {/* <FormError></FormError> */}
+                {error?<FormError>{error}</FormError>:null }
                 <FormInput type="text"
                 placeholder="Email"
-                value="">
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
+                name="email"
+                >
                 </FormInput>
                 <FormInput
                 type="password"
                 placeholder="password"
-                value=""
+                value={password}
+                onChange={(e)=>setPassword(e.target.value)}
+                name="password"
                 ></FormInput>
-                <FormButton>Sign In</FormButton>
+                <FormButton  disabled={isInvalid}>Sign In</FormButton>
                 <FormText>New to Netflix?
                 <FormLink href="/signup">Sign Up Now</FormLink>
                 </FormText>

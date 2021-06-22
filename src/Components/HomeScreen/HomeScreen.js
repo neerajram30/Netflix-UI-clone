@@ -18,6 +18,7 @@ function HomeScreen() {
 <RowPost title="Horror Movies" url={horror}/>
 <RowPost title="Romance Movies" url={romance}/>
 <RowPost title="Doccumentaries" url={documentaries}/>  */}
+
         </div>
     )
 }

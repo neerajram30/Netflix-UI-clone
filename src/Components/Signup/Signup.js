@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useContext} from 'react'
 import HeaderWrapper from '../../assets/FrontHeader/HeaderWrapper'
 import FrontNav from '../../assets/FrontHeader/FrontNav'
 import Logo from '../../assets/FrontHeader/Logo'
@@ -11,7 +11,37 @@ import FormLink from '../../assets/UserForm/FormLink'
 import FormCaptcha from '../../assets/UserForm/FormCaptche'
 import FormInput from '../../assets/UserForm/FormInput'
 import Footer from '../Footer/Footer'
+import FormError from '../../assets/UserForm/FormError'
+import {FirebaseContext} from '../../Context/Context'
+import {useHistory} from 'react-router-dom'
+
+
 function Signup() {
+    
+    const [userName,setUserName] = useState('');
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+    const [error,setError] =useState('')
+    const history = useHistory()
+    const isInvalid =password === "" || email === "" || userName ==="";
+    const {firebase} = useContext(FirebaseContext);
+
+
+    const  handleSubmit=(event)=>{
+      event.preventDefault();
+      firebase.auth().createUserWithEmailAndPassword(email,password).then((result)=>{
+          result.user.updateProfile({displayName:userName}).then(()=>{
+            firebase.firestore().collection('users').add({
+              id:result.user.uid,
+              userName:userName,
+              email:email,
+            }).then(()=>{
+              history.push('/signin');
+            })
+          })
+        }).catch((error)=>setError(error.message));  
+      }
+    
     return (
         <>
           <HeaderWrapper className="header-wrapper-home">
@@ -19,24 +49,32 @@ function Signup() {
             <Logo/>
             </FrontNav>
         <FormWrapper className="sign-form-wrapper">
-            <FormBase>
+            <FormBase  onSubmit={handleSubmit}>
                 <FormTitle>Sign Up</FormTitle>
-                {/* <FormError></FormError> */}
+                {error ? <FormError>{error}</FormError>: null}
                 <FormInput
                 type="text"
-                value=""
+                value={userName}
                 placeholder="User name"
+                onChange={(e)=>setUserName(e.target.value)}
+                name="userName"
                 ></FormInput>
                 <FormInput type="text"
                 placeholder="Email"
-                value="">
+                value={email}
+                name="email"
+                onChange={(e)=>setEmail(e.target.value)}
+                >
+                  
                 </FormInput>
                 <FormInput
                 type="password"
                 placeholder="password"
-                value=""
+                value={password}
+                name="password"
+                onChange={(e)=>setPassword(e.target.value)}
                 ></FormInput>
-                <FormButton>Sign In</FormButton>
+                <FormButton disabled={isInvalid}> Sign Up</FormButton>
                 <FormText>Alredy a user?
                 <FormLink href="/signin">Sign In Now</FormLink>
                 </FormText>
@@ -47,7 +85,7 @@ function Signup() {
         </HeaderWrapper>
         <Footer/>  
         </>
-    )
-}
+    );
+    }
 
 export default Signup

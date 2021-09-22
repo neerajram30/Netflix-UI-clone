@@ -1,7 +1,7 @@
 
 import React,{useContext,useEffect} from 'react'
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
 
   Route,
 } from "react-router-dom";

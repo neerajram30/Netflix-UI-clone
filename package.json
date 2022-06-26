@@ -2,7 +2,7 @@
   "name": "moviefreaks",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://neerajram30.github.io/moviefreakz",
+  //"homepage": "http://neerajram30.github.io/moviefreakz",
   "dependencies": {
     "-": "0.0.1",
     "@testing-library/jest-dom": "^5.12.0",
